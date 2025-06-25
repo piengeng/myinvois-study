@@ -22,3 +22,4 @@ Notes:
 - When IRBM force businesses to use digital signature (1.0 vs 1.1) on e-invoice, expect minimum RM1500/year/certificate on self-generated e-invoice. Still looking for low-cost option, haven't found any.
 - misleading wording "using algorithms like SHA256" for documentHash, it must be SHA256, if allow other algorithms, the param will include options for other algorithms. 
 - some fields/tags like contact>telephone|electronicMail is also a MUST when generating documents, except consolidated, then 'NA' is used.
+- PDK 2022 / Harmonized-System (HS) coding are not included. It was refered from [WCO](https://www.wcoomd.org/en/topics/nomenclature/instrument-and-tools.aspx) then localized/modified to Malaysia.
