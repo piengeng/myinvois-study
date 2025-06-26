@@ -23,3 +23,5 @@ Notes:
 - misleading wording "using algorithms like SHA256" for documentHash, it must be SHA256, if allow other algorithms, the param will include options for other algorithms. 
 - some fields/tags like contact>telephone|electronicMail is also a MUST when generating documents, except consolidated, then 'NA' is used.
 - PDK 2022 / Harmonized-System (HS) coding are not included. It was refered from [WCO](https://www.wcoomd.org/en/topics/nomenclature/instrument-and-tools.aspx) then localized/modified to Malaysia.
+- maybe a better [LHDN MyInvois SDK.postman_collection.json](https://github.com/user-attachments/files/20915041/LHDN.MyInvois.SDK.postman_collection.json)
+- for QR validation link: portalUrl + docUuid + /share/ + docLongId eg. `https://preprod.myinvois.hasil.gov.my/PP2...J10/share/9P8...557`
