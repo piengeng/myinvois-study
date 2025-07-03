@@ -43,12 +43,7 @@ def firstLast(s):
 
 
 def wrap(lines, pkg="main"):
-    head = [
-        f"package {pkg}",
-        "",
-        "// nolint: unused",
-        "const (",
-    ]
+    head = [f"package {pkg}", "", "// nolint: unused", "const ("]
     return head + lines + [")"]
 
 

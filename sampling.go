@@ -4,6 +4,32 @@ import (
 	"github.com/beevik/etree"
 )
 
+var (
+	egSPI_1 = []valAttr{
+		{Attr: [2]string{sID, TIN}, Val: "Supplier's TIN"},
+		{Attr: [2]string{sID, BRN}, Val: "Supplier's BRN"},
+		{Attr: [2]string{sID, SST}, Val: "NA"},
+		{Attr: [2]string{sID, TTX}, Val: "NA"},
+	}
+	egCPI_1 = []valAttr{
+		{Attr: [2]string{sID, TIN}, Val: "Buyer's TIN"},
+		{Attr: [2]string{sID, BRN}, Val: "Buyer's BRN"},
+		{Attr: [2]string{sID, SST}, Val: "NA"},
+		{Attr: [2]string{sID, TTX}, Val: "NA"},
+	}
+	egDPI_1 = []valAttr{
+		{Attr: [2]string{sID, TIN}, Val: "Recipient's TIN"},
+		{Attr: [2]string{sID, BRN}, Val: "Recipient's BRN"},
+	}
+	egCPI_2 = []valAttr{
+		{Attr: [2]string{sID, TIN}, Val: gpTIN}, // consolidated
+		{Attr: [2]string{sID, BRN}, Val: "NA"},
+		{Attr: [2]string{sID, SST}, Val: "NA"},
+		{Attr: [2]string{sID, TTX}, Val: "NA"},
+	}
+	egAddrLines_1 = []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}
+)
+
 // nolint:unused
 func samplingInvoice10(out string) {
 	doc := etree.NewDocument()
@@ -17,20 +43,21 @@ func samplingInvoice10(out string) {
 	invAddDocRef(inv, "L1", NUL, NUL)
 
 	asp := invAccSupPar(inv, &valAttrs{Val: "CPT-CCN-W-211111-KL-000002", Attrs: [][2]string{{sAN, "CertEX"}}})
-	sp := invSupPar(asp, spMSICSC, "Supplier's TIN", "Supplier's BRN", "NA", "NA")
-	invXxxParPosAdd(sp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, spCIC)
+
+	sp := invSupPar(asp, spMSICSC, egSPI_1)
+	invXxxParPosAdd(sp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, spCIC)
 	invParLegEntRegNam(sp, "Supplier's Name")
 	invCon(sp, "+60123456789", "supplier@email.com")
 
 	acp := invAccCusPar(inv, nil)
-	cp := invCusPar(acp, "Buyer's TIN", "Buyer's BRN", "NA", "NA")
-	invXxxParPosAdd(cp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	cp := invCusPar(acp, egCPI_1)
+	invXxxParPosAdd(cp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(cp, "Buyer's Name")
 	invCon(cp, "+60123456780", "buyer@email.com")
 
 	d := invDel(inv)
-	dp := invDelPar(d, "Recipient's TIN", "Recipient's BRN")
-	invXxxParPosAdd(dp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	dp := invDelPar(d, egDPI_1)
+	invXxxParPosAdd(dp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(dp, "Recipient's Name")
 	ds := invDelShi(d, "1234")
 	invDelShiFreAllCha(ds, "true", "Service charge", MYR, "100")
@@ -73,14 +100,14 @@ func samplingInvoiceMultiLine10(out string) {
 	invAddDocRef(inv, "CIF", NUL, NUL)
 
 	asp := invAccSupPar(inv, &valAttrs{Val: "CPT-CCN-W-211111-KL-000002", Attrs: [][2]string{{sAN, "CertEX"}}})
-	sp := invSupPar(asp, spMSICSC, "Supplier's TIN", "Supplier's BRN", "NA", "NA")
-	invXxxParPosAdd(sp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, spCIC)
+	sp := invSupPar(asp, spMSICSC, egSPI_1)
+	invXxxParPosAdd(sp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, spCIC)
 	invParLegEntRegNam(sp, "Supplier's Name")
 	invCon(sp, "+60123456789", "supplier@email.com")
 
 	acp := invAccCusPar(inv, nil)
-	cp := invCusPar(acp, "Buyer's TIN", "Buyer's BRN", "NA", "NA")
-	invXxxParPosAdd(cp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	cp := invCusPar(acp, egCPI_1)
+	invXxxParPosAdd(cp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(cp, "Buyer's Name")
 	invCon(cp, "+60123456780", "buyer@email.com")
 
@@ -140,14 +167,14 @@ func samplingInvoiceConsolidated10(out string) {
 	invTop(inv, "XML-INV12345", "2024-07-23", "00:40:00Z", _10, iTCInvoice, MYR, MYR)
 
 	asp := invAccSupPar(inv, nil)
-	sp := invSupPar(asp, spMSICSC, "Supplier's TIN", "Supplier's BRN", "NA", "NA")
-	invXxxParPosAdd(sp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, spCIC)
+	sp := invSupPar(asp, spMSICSC, egSPI_1)
+	invXxxParPosAdd(sp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, spCIC)
 	invParLegEntRegNam(sp, "Supplier's Name")
 	invCon(sp, "+60123456789", "supplier@email.com")
 
 	acp := invAccCusPar(inv, nil)
-	cp := invCusPar(acp, gTIN, "NA", "NA", "NA")
-	invXxxParPosAdd(cp, "", "", []string{"NA", "", ""}, "")
+	cp := invCusPar(acp, egCPI_2)
+	invXxxParPosAdd(cp, "", "", "", []string{"NA", "", ""}, "")
 	invParLegEntRegNam(cp, "Consolidated Buyers")
 	invCon(cp, "NA", "NA")
 
@@ -190,20 +217,20 @@ func samplingInvoiceForeignCurrency10(out string) {
 	invAddDocRef(inv, "L1", NUL, NUL)
 
 	asp := invAccSupPar(inv, &valAttrs{Val: "CPT-CCN-W-211111-KL-000002", Attrs: [][2]string{{sAN, "CertEX"}}})
-	sp := invSupPar(asp, spMSICSC, "Supplier's TIN", "Supplier's BRN", "NA", "NA")
-	invXxxParPosAdd(sp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, spCIC)
+	sp := invSupPar(asp, spMSICSC, egSPI_1)
+	invXxxParPosAdd(sp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, spCIC)
 	invParLegEntRegNam(sp, "Supplier's Name")
 	invCon(sp, "+60123456789", "supplier@email.com")
 
 	acp := invAccCusPar(inv, nil)
-	cp := invCusPar(acp, "Buyer's TIN", "Buyer's BRN", "NA", "NA")
-	invXxxParPosAdd(cp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	cp := invCusPar(acp, egCPI_1)
+	invXxxParPosAdd(cp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(cp, "Buyer's Name")
 	invCon(cp, "+60123456780", "buyer@email.com")
 
 	d := invDel(inv)
-	dp := invDelPar(d, "Recipient's TIN", "Recipient's BRN")
-	invXxxParPosAdd(dp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	dp := invDelPar(d, egDPI_1)
+	invXxxParPosAdd(dp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(dp, "Recipient's Name")
 	ds := invDelShi(d, "1234")
 	invDelShiFreAllCha(ds, "true", "Service charge", USD, "100")
@@ -251,20 +278,20 @@ func samplingCreditNote10(out string) {
 	invAddDocRef(inv, "L1", NUL, NUL)
 
 	asp := invAccSupPar(inv, &valAttrs{Val: "CPT-CCN-W-211111-KL-000002", Attrs: [][2]string{{sAN, "CertEX"}}})
-	sp := invSupPar(asp, spMSICSC, "Supplier's TIN", "Supplier's BRN", "NA", "NA")
-	invXxxParPosAdd(sp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, spCIC)
+	sp := invSupPar(asp, spMSICSC, egSPI_1)
+	invXxxParPosAdd(sp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, spCIC)
 	invParLegEntRegNam(sp, "Supplier's Name")
 	invCon(sp, "+60123456789", "supplier@email.com")
 
 	acp := invAccCusPar(inv, nil)
-	cp := invCusPar(acp, "Buyer's TIN", "Buyer's BRN", "NA", "NA")
-	invXxxParPosAdd(cp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	cp := invCusPar(acp, egCPI_1)
+	invXxxParPosAdd(cp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(cp, "Buyer's Name")
 	invCon(cp, "+60123456780", "buyer@email.com")
 
 	d := invDel(inv)
-	dp := invDelPar(d, "Recipient's TIN", "Recipient's BRN")
-	invXxxParPosAdd(dp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	dp := invDelPar(d, egDPI_1)
+	invXxxParPosAdd(dp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(dp, "Recipient's Name")
 	ds := invDelShi(d, "1234")
 	invDelShiFreAllCha(ds, "true", "Service charge", MYR, "100")
@@ -309,20 +336,20 @@ func samplingDebitNote10(out string) {
 	invAddDocRef(inv, "L1", NUL, NUL)
 
 	asp := invAccSupPar(inv, &valAttrs{Val: "CPT-CCN-W-211111-KL-000002", Attrs: [][2]string{{sAN, "CertEX"}}})
-	sp := invSupPar(asp, spMSICSC, "Supplier's TIN", "Supplier's BRN", "NA", "NA")
-	invXxxParPosAdd(sp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, spCIC)
+	sp := invSupPar(asp, spMSICSC, egSPI_1)
+	invXxxParPosAdd(sp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, spCIC)
 	invParLegEntRegNam(sp, "Supplier's Name")
 	invCon(sp, "+60123456789", "supplier@email.com")
 
 	acp := invAccCusPar(inv, nil)
-	cp := invCusPar(acp, "Buyer's TIN", "Buyer's BRN", "NA", "NA")
-	invXxxParPosAdd(cp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	cp := invCusPar(acp, egCPI_1)
+	invXxxParPosAdd(cp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(cp, "Buyer's Name")
 	invCon(cp, "+60123456780", "buyer@email.com")
 
 	d := invDel(inv)
-	dp := invDelPar(d, "Recipient's TIN", "Recipient's BRN")
-	invXxxParPosAdd(dp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	dp := invDelPar(d, egDPI_1)
+	invXxxParPosAdd(dp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(dp, "Recipient's Name")
 	ds := invDelShi(d, "1234")
 	invDelShiFreAllCha(ds, "true", "Service charge", MYR, "100")
@@ -367,20 +394,20 @@ func samplingRefundNote10(out string) {
 	invAddDocRef(inv, "L1", NUL, NUL)
 
 	asp := invAccSupPar(inv, &valAttrs{Val: "CPT-CCN-W-211111-KL-000002", Attrs: [][2]string{{sAN, "CertEX"}}})
-	sp := invSupPar(asp, spMSICSC, "Supplier's TIN", "Supplier's BRN", "NA", "NA")
-	invXxxParPosAdd(sp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, spCIC)
+	sp := invSupPar(asp, spMSICSC, egSPI_1)
+	invXxxParPosAdd(sp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, spCIC)
 	invParLegEntRegNam(sp, "Supplier's Name")
 	invCon(sp, "+60123456789", "supplier@email.com")
 
 	acp := invAccCusPar(inv, nil)
-	cp := invCusPar(acp, "Buyer's TIN", "Buyer's BRN", "NA", "NA")
-	invXxxParPosAdd(cp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	cp := invCusPar(acp, egCPI_1)
+	invXxxParPosAdd(cp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(cp, "Buyer's Name")
 	invCon(cp, "+60123456780", "buyer@email.com")
 
 	d := invDel(inv)
-	dp := invDelPar(d, "Recipient's TIN", "Recipient's BRN")
-	invXxxParPosAdd(dp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	dp := invDelPar(d, egDPI_1)
+	invXxxParPosAdd(dp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(dp, "Recipient's Name")
 	ds := invDelShi(d, "1234")
 	invDelShiFreAllCha(ds, "true", "Service charge", MYR, "100")
@@ -423,20 +450,20 @@ func samplingSelfBilledInvoice10(out string) {
 	invAddDocRef(inv, "L1", NUL, NUL)
 
 	asp := invAccSupPar(inv, &valAttrs{Val: "CPT-CCN-W-211111-KL-000002", Attrs: [][2]string{{sAN, "CertEX"}}})
-	sp := invSupPar(asp, spMSICSC, "Supplier's TIN", "Supplier's BRN", "NA", "NA")
-	invXxxParPosAdd(sp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, spCIC)
+	sp := invSupPar(asp, spMSICSC, egSPI_1)
+	invXxxParPosAdd(sp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, spCIC)
 	invParLegEntRegNam(sp, "Supplier's Name")
 	invCon(sp, "+60123456789", "supplier@email.com")
 
 	acp := invAccCusPar(inv, nil)
-	cp := invCusPar(acp, "Buyer's TIN", "Buyer's BRN", "NA", "NA")
-	invXxxParPosAdd(cp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	cp := invCusPar(acp, egCPI_1)
+	invXxxParPosAdd(cp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(cp, "Buyer's Name")
 	invCon(cp, "+60123456780", "buyer@email.com")
 
 	d := invDel(inv)
-	dp := invDelPar(d, "Recipient's TIN", "Recipient's BRN")
-	invXxxParPosAdd(dp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	dp := invDelPar(d, egDPI_1)
+	invXxxParPosAdd(dp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(dp, "Recipient's Name")
 	ds := invDelShi(d, "1234")
 	invDelShiFreAllCha(ds, "true", "Service charge", MYR, "100")
@@ -481,20 +508,20 @@ func samplingSelfBilledCreditNote10(out string) {
 	invAddDocRef(inv, "L1", NUL, NUL)
 
 	asp := invAccSupPar(inv, &valAttrs{Val: "CPT-CCN-W-211111-KL-000002", Attrs: [][2]string{{sAN, "CertEX"}}})
-	sp := invSupPar(asp, spMSICSC, "Supplier's TIN", "Supplier's BRN", "NA", "NA")
-	invXxxParPosAdd(sp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, spCIC)
+	sp := invSupPar(asp, spMSICSC, egSPI_1)
+	invXxxParPosAdd(sp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, spCIC)
 	invParLegEntRegNam(sp, "Supplier's Name")
 	invCon(sp, "+60123456789", "supplier@email.com")
 
 	acp := invAccCusPar(inv, nil)
-	cp := invCusPar(acp, "Buyer's TIN", "Buyer's BRN", "NA", "NA")
-	invXxxParPosAdd(cp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	cp := invCusPar(acp, egCPI_1)
+	invXxxParPosAdd(cp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(cp, "Buyer's Name")
 	invCon(cp, "+60123456780", "buyer@email.com")
 
 	d := invDel(inv)
-	dp := invDelPar(d, "Recipient's TIN", "Recipient's BRN")
-	invXxxParPosAdd(dp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	dp := invDelPar(d, egDPI_1)
+	invXxxParPosAdd(dp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(dp, "Recipient's Name")
 	ds := invDelShi(d, "1234")
 	invDelShiFreAllCha(ds, "true", "Service charge", MYR, "100")
@@ -539,20 +566,20 @@ func samplingSelfBilledDebitNote10(out string) {
 	invAddDocRef(inv, "L1", NUL, NUL)
 
 	asp := invAccSupPar(inv, &valAttrs{Val: "CPT-CCN-W-211111-KL-000002", Attrs: [][2]string{{sAN, "CertEX"}}})
-	sp := invSupPar(asp, spMSICSC, "Supplier's TIN", "Supplier's BRN", "NA", "NA")
-	invXxxParPosAdd(sp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, spCIC)
+	sp := invSupPar(asp, spMSICSC, egSPI_1)
+	invXxxParPosAdd(sp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, spCIC)
 	invParLegEntRegNam(sp, "Supplier's Name")
 	invCon(sp, "+60123456789", "supplier@email.com")
 
 	acp := invAccCusPar(inv, nil)
-	cp := invCusPar(acp, "Buyer's TIN", "Buyer's BRN", "NA", "NA")
-	invXxxParPosAdd(cp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	cp := invCusPar(acp, egCPI_1)
+	invXxxParPosAdd(cp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(cp, "Buyer's Name")
 	invCon(cp, "+60123456780", "buyer@email.com")
 
 	d := invDel(inv)
-	dp := invDelPar(d, "Recipient's TIN", "Recipient's BRN")
-	invXxxParPosAdd(dp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	dp := invDelPar(d, egDPI_1)
+	invXxxParPosAdd(dp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(dp, "Recipient's Name")
 	ds := invDelShi(d, "1234")
 	invDelShiFreAllCha(ds, "true", "Service charge", MYR, "100")
@@ -597,20 +624,20 @@ func samplingSelfBilledRefundNote10(out string) {
 	invAddDocRef(inv, "L1", NUL, NUL)
 
 	asp := invAccSupPar(inv, &valAttrs{Val: "CPT-CCN-W-211111-KL-000002", Attrs: [][2]string{{sAN, "CertEX"}}})
-	sp := invSupPar(asp, spMSICSC, "Supplier's TIN", "Supplier's BRN", "NA", "NA")
-	invXxxParPosAdd(sp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, spCIC)
+	sp := invSupPar(asp, spMSICSC, egSPI_1)
+	invXxxParPosAdd(sp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, spCIC)
 	invParLegEntRegNam(sp, "Supplier's Name")
 	invCon(sp, "+60123456789", "supplier@email.com")
 
 	acp := invAccCusPar(inv, nil)
-	cp := invCusPar(acp, "Buyer's TIN", "Buyer's BRN", "NA", "NA")
-	invXxxParPosAdd(cp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	cp := invCusPar(acp, egCPI_1)
+	invXxxParPosAdd(cp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(cp, "Buyer's Name")
 	invCon(cp, "+60123456780", "buyer@email.com")
 
 	d := invDel(inv)
-	dp := invDelPar(d, "Recipient's TIN", "Recipient's BRN")
-	invXxxParPosAdd(dp, "50480", spCSC, []string{"Lot 66", "Bangunan Merdeka", "Persiaran Jaya"}, "MALAYSIA")
+	dp := invDelPar(d, egDPI_1)
+	invXxxParPosAdd(dp, reSubWP.ReplaceAllString(cState[spCSC].State, ""), "50480", spCSC, egAddrLines_1, "MALAYSIA")
 	invParLegEntRegNam(dp, "Recipient's Name")
 	ds := invDelShi(d, "1234")
 	invDelShiFreAllCha(ds, "true", "Service charge", MYR, "100")

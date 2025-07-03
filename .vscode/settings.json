@@ -1,0 +1,13 @@
+{
+  "code-runner.executorMap": {
+    // ... other language configurations
+    "go": "cd $dir && go run ."
+    // ... other language configurations
+  },
+  "gopls": {
+    "analyses": {
+      // "unused": false,
+      "unusedfunc": false
+    }
+  }
+}

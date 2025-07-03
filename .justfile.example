@@ -1,0 +1,38 @@
+dirBase := "~/yourpath/myinvois"
+dirRefs := "~/yourpath/myinvois/refs"
+dirSamples := "~/yourpath/myinvois/refs/samples"
+dirSampling := "~/yourpath/myinvois/refs/sampling"
+
+# https://docs.oasis-open.org/ubl/UBL-2.1-JSON/v2.0/UBL-2.1-JSON-v2.0.html
+urlUblJsonZip := "https://docs.oasis-open.org/ubl/UBL-2.1-JSON/v2.0/cn01/UBL-2.1-JSON-v2.0-cn01.zip"
+dirUblJson := "UBL-2.1-JSON-v2.0-cn01"
+
+# https://docs.oasis-open.org/ubl/UBL-2.1.html
+urlUblZip := "https://docs.oasis-open.org/ubl/os-UBL-2.1/UBL-2.1.zip"
+dirUblXml := "UBL-2.1"
+dirUblXsdrt := "xsdrt/*"
+dirSdkSamples := "sdk.myinvois.hasil.gov.my/files/sdksamples"
+
+urlSdk := "https://sdk.myinvois.hasil.gov.my"
+
+default:
+  just --list # assume os: linux, binaries: just, node/pnpm, go, python3, unzip, wget, sqlc
+
+mkdir:
+  mkdir -p {{ dirRefs }}
+  mkdir -p {{ dirSamples }}
+  mkdir -p {{ dirSampling }}
+
+get-sdk:
+  just mkdir # wget would only took about 4s
+  wget -r -l inf -k -p -np -nv -P {{ dirRefs }} {{ urlSdk }} || true
+
+get-ubl:
+  just mkdir
+  wget -nc -nv -P {{ dirRefs }} {{ urlUblZip }}
+  unzip -q -d {{ dirRefs }}/{{ dirUblXml }} {{ dirRefs }}/{{ dirUblXml }}.zip {{dirUblXsdrt}}
+  # wget -nc -nv -P {{ dirRefs }} {{ urlUblJsonZip }}
+  # unzip -q -d {{ dirRefs }}/{{ dirUblJson }} {{ dirRefs }}/{{ dirUblJson }}.zip
+
+go-gen:
+  go generate ./...

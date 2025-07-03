@@ -72,7 +72,7 @@ func sdkSampleInvoice10(out string) {
 	spa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	spa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry[spCIC].Code)
+		Element().SetText(cCountryRev[spCIC].Code)
 	sp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Supplier's Name")
 	sc := sp.CreateElement(cacContact)
 	sc.CreateElement(cbcTelephone).SetText("+60123456789")
@@ -99,7 +99,7 @@ func sdkSampleInvoice10(out string) {
 	cpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	cpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	cp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Buyer's Name")
 	cc := cp.CreateElement(cacContact)
 	cc.CreateElement(cbcTelephone).SetText("+60123456780")
@@ -122,7 +122,7 @@ func sdkSampleInvoice10(out string) {
 	dpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	dpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	dp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Recipient's Name")
 
 	ds := d.CreateElement(cacShipment)
@@ -205,7 +205,7 @@ func sdkSampleInvoice10(out string) {
 
 	ili := il.CreateElement(cacItem)
 	ili.CreateElement(cbcDescription).SetText("Laptop Peripherals")
-	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountry["MALAYSIA"].Code)
+	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountryRev["MALAYSIA"].Code)
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
 		CreateAttr(lID, "PTC").Element().SetText("9800.00.0010")
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
@@ -284,7 +284,7 @@ func sdkSampleInvoiceMultiLine10(out string) {
 	spa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	spa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry[spCIC].Code)
+		Element().SetText(cCountryRev[spCIC].Code)
 	sp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Supplier's Name")
 	sc := sp.CreateElement(cacContact)
 	sc.CreateElement(cbcTelephone).SetText("+60123456789")
@@ -311,7 +311,7 @@ func sdkSampleInvoiceMultiLine10(out string) {
 	cpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	cpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	cp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Buyer's Name")
 	cc := cp.CreateElement(cacContact)
 	cc.CreateElement(cbcTelephone).SetText("+60123456780")
@@ -394,7 +394,7 @@ func sdkSampleInvoiceMultiLine10(out string) {
 
 	il1i := il1.CreateElement(cacItem)
 	il1i.CreateElement(cbcDescription).SetText("Laptop Peripherals")
-	il1i.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountry["MALAYSIA"].Code)
+	il1i.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountryRev["MALAYSIA"].Code)
 	il1i.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
 		CreateAttr(lID, "PTC").Element().SetText("9800.00.0010")
 	il1i.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
@@ -435,7 +435,7 @@ func sdkSampleInvoiceMultiLine10(out string) {
 
 	il2i := il2.CreateElement(cacItem)
 	il2i.CreateElement(cbcDescription).SetText("Computer Monitor")
-	il2i.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountry["MALAYSIA"].Code)
+	il2i.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountryRev["MALAYSIA"].Code)
 	il2i.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
 		CreateAttr(lID, "PTC").Element().SetText("9800.00.0011")
 	il2i.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
@@ -484,7 +484,7 @@ func sdkSampleInvoiceMultiLine10(out string) {
 
 	il3i := il3.CreateElement(cacItem)
 	il3i.CreateElement(cbcDescription).SetText("Wireless Mouse")
-	il3i.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountry["MALAYSIA"].Code)
+	il3i.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountryRev["MALAYSIA"].Code)
 	il3i.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
 		CreateAttr(lID, "PTC").Element().SetText("9800.00.0012")
 	il3i.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
@@ -536,7 +536,7 @@ func sdkSampleInvoiceConsolidated10(out string) {
 	spa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	spa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry[spCIC].Code)
+		Element().SetText(cCountryRev[spCIC].Code)
 	sp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Supplier's Name")
 	sc := sp.CreateElement(cacContact)
 	sc.CreateElement(cbcTelephone).SetText("+60123456789")
@@ -607,7 +607,7 @@ func sdkSampleInvoiceConsolidated10(out string) {
 
 	il1i := il1.CreateElement(cacItem)
 	il1i.CreateElement(cbcDescription).SetText("Receipt 001 - 100")
-	il1i.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountry["MALAYSIA"].Code)
+	il1i.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountryRev["MALAYSIA"].Code)
 	il1i.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
 		CreateAttr(lID, "PTC").Element().SetText("")
 	il1i.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
@@ -636,7 +636,7 @@ func sdkSampleInvoiceConsolidated10(out string) {
 
 	il2i := il2.CreateElement(cacItem)
 	il2i.CreateElement(cbcDescription).SetText("Receipt 101 - 200")
-	il2i.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountry["MALAYSIA"].Code)
+	il2i.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountryRev["MALAYSIA"].Code)
 	il2i.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
 		CreateAttr(lID, "PTC").Element().SetText("")
 	il2i.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
@@ -716,7 +716,7 @@ func sdkSampleInvoiceForeignCurrency10(out string) {
 	spa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	spa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry[spCIC].Code)
+		Element().SetText(cCountryRev[spCIC].Code)
 	sp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Supplier's Name")
 	sc := sp.CreateElement(cacContact)
 	sc.CreateElement(cbcTelephone).SetText("+60123456789")
@@ -743,7 +743,7 @@ func sdkSampleInvoiceForeignCurrency10(out string) {
 	cpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	cpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	cp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Buyer's Name")
 	cc := cp.CreateElement(cacContact)
 	cc.CreateElement(cbcTelephone).SetText("+60123456780")
@@ -766,7 +766,7 @@ func sdkSampleInvoiceForeignCurrency10(out string) {
 	dpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	dpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	dp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Recipient's Name")
 
 	ds := d.CreateElement(cacShipment)
@@ -854,7 +854,7 @@ func sdkSampleInvoiceForeignCurrency10(out string) {
 
 	il1i := il1.CreateElement(cacItem)
 	il1i.CreateElement(cbcDescription).SetText("Laptop Peripherals")
-	il1i.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountry["MALAYSIA"].Code)
+	il1i.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountryRev["MALAYSIA"].Code)
 	il1i.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
 		CreateAttr(lID, "PTC").Element().SetText("9800.00.0010")
 	il1i.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
@@ -934,7 +934,7 @@ func sdkSampleCreditNote10(out string) {
 	spa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	spa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry[spCIC].Code)
+		Element().SetText(cCountryRev[spCIC].Code)
 	sp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Supplier's Name")
 	sc := sp.CreateElement(cacContact)
 	sc.CreateElement(cbcTelephone).SetText("+60123456789")
@@ -961,7 +961,7 @@ func sdkSampleCreditNote10(out string) {
 	cpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	cpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	cp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Buyer's Name")
 	cc := cp.CreateElement(cacContact)
 	cc.CreateElement(cbcTelephone).SetText("+60123456780")
@@ -984,7 +984,7 @@ func sdkSampleCreditNote10(out string) {
 	dpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	dpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	dp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Recipient's Name")
 
 	ds := d.CreateElement(cacShipment)
@@ -1067,7 +1067,7 @@ func sdkSampleCreditNote10(out string) {
 
 	ili := il.CreateElement(cacItem)
 	ili.CreateElement(cbcDescription).SetText("Laptop Peripherals")
-	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountry["MALAYSIA"].Code)
+	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountryRev["MALAYSIA"].Code)
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
 		CreateAttr(lID, "PTC").Element().SetText("9800.00.0010")
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
@@ -1147,7 +1147,7 @@ func sdkSampleDebitNote10(out string) {
 	spa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	spa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry[spCIC].Code)
+		Element().SetText(cCountryRev[spCIC].Code)
 	sp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Supplier's Name")
 	sc := sp.CreateElement(cacContact)
 	sc.CreateElement(cbcTelephone).SetText("+60123456789")
@@ -1174,7 +1174,7 @@ func sdkSampleDebitNote10(out string) {
 	cpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	cpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	cp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Buyer's Name")
 	cc := cp.CreateElement(cacContact)
 	cc.CreateElement(cbcTelephone).SetText("+60123456780")
@@ -1197,7 +1197,7 @@ func sdkSampleDebitNote10(out string) {
 	dpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	dpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	dp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Recipient's Name")
 
 	ds := d.CreateElement(cacShipment)
@@ -1280,7 +1280,7 @@ func sdkSampleDebitNote10(out string) {
 
 	ili := il.CreateElement(cacItem)
 	ili.CreateElement(cbcDescription).SetText("Laptop Peripherals")
-	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountry["MALAYSIA"].Code)
+	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountryRev["MALAYSIA"].Code)
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
 		CreateAttr(lID, "PTC").Element().SetText("9800.00.0010")
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
@@ -1360,7 +1360,7 @@ func sdkSampleRefundNote10(out string) {
 	spa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	spa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry[spCIC].Code)
+		Element().SetText(cCountryRev[spCIC].Code)
 	sp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Supplier's Name")
 	sc := sp.CreateElement(cacContact)
 	sc.CreateElement(cbcTelephone).SetText("+60123456789")
@@ -1387,7 +1387,7 @@ func sdkSampleRefundNote10(out string) {
 	cpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	cpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	cp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Buyer's Name")
 	cc := cp.CreateElement(cacContact)
 	cc.CreateElement(cbcTelephone).SetText("+60123456780")
@@ -1410,7 +1410,7 @@ func sdkSampleRefundNote10(out string) {
 	dpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	dpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	dp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Recipient's Name")
 
 	ds := d.CreateElement(cacShipment)
@@ -1493,7 +1493,7 @@ func sdkSampleRefundNote10(out string) {
 
 	ili := il.CreateElement(cacItem)
 	ili.CreateElement(cbcDescription).SetText("Laptop Peripherals")
-	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountry["MALAYSIA"].Code)
+	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountryRev["MALAYSIA"].Code)
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
 		CreateAttr(lID, "PTC").Element().SetText("9800.00.0010")
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
@@ -1569,7 +1569,7 @@ func sdkSampleSelfBilledInvoice10(out string) {
 	spa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	spa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry[spCIC].Code)
+		Element().SetText(cCountryRev[spCIC].Code)
 	sp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Supplier's Name")
 	sc := sp.CreateElement(cacContact)
 	sc.CreateElement(cbcTelephone).SetText("+60123456789")
@@ -1596,7 +1596,7 @@ func sdkSampleSelfBilledInvoice10(out string) {
 	cpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	cpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	cp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Buyer's Name")
 	cc := cp.CreateElement(cacContact)
 	cc.CreateElement(cbcTelephone).SetText("+60123456780")
@@ -1619,7 +1619,7 @@ func sdkSampleSelfBilledInvoice10(out string) {
 	dpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	dpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	dp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Recipient's Name")
 
 	ds := d.CreateElement(cacShipment)
@@ -1702,7 +1702,7 @@ func sdkSampleSelfBilledInvoice10(out string) {
 
 	ili := il.CreateElement(cacItem)
 	ili.CreateElement(cbcDescription).SetText("Laptop Peripherals")
-	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountry["MALAYSIA"].Code)
+	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountryRev["MALAYSIA"].Code)
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
 		CreateAttr(lID, "PTC").Element().SetText("9800.00.0010")
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
@@ -1783,7 +1783,7 @@ func sdkSampleSelfBilledCreditNote10(out string) {
 	spa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	spa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry[spCIC].Code)
+		Element().SetText(cCountryRev[spCIC].Code)
 	sp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Supplier's Name")
 	sc := sp.CreateElement(cacContact)
 	sc.CreateElement(cbcTelephone).SetText("+60123456789")
@@ -1810,7 +1810,7 @@ func sdkSampleSelfBilledCreditNote10(out string) {
 	cpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	cpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	cp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Buyer's Name")
 	cc := cp.CreateElement(cacContact)
 	cc.CreateElement(cbcTelephone).SetText("+60123456780")
@@ -1833,7 +1833,7 @@ func sdkSampleSelfBilledCreditNote10(out string) {
 	dpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	dpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	dp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Recipient's Name")
 
 	ds := d.CreateElement(cacShipment)
@@ -1916,7 +1916,7 @@ func sdkSampleSelfBilledCreditNote10(out string) {
 
 	ili := il.CreateElement(cacItem)
 	ili.CreateElement(cbcDescription).SetText("Laptop Peripherals")
-	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountry["MALAYSIA"].Code)
+	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountryRev["MALAYSIA"].Code)
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
 		CreateAttr(lID, "PTC").Element().SetText("9800.00.0010")
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
@@ -1996,7 +1996,7 @@ func sdkSampleSelfBilledDebitNote10(out string) {
 	spa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	spa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry[spCIC].Code)
+		Element().SetText(cCountryRev[spCIC].Code)
 	sp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Supplier's Name")
 	sc := sp.CreateElement(cacContact)
 	sc.CreateElement(cbcTelephone).SetText("+60123456789")
@@ -2023,7 +2023,7 @@ func sdkSampleSelfBilledDebitNote10(out string) {
 	cpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	cpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	cp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Buyer's Name")
 	cc := cp.CreateElement(cacContact)
 	cc.CreateElement(cbcTelephone).SetText("+60123456780")
@@ -2046,7 +2046,7 @@ func sdkSampleSelfBilledDebitNote10(out string) {
 	dpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	dpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	dp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Recipient's Name")
 
 	ds := d.CreateElement(cacShipment)
@@ -2129,7 +2129,7 @@ func sdkSampleSelfBilledDebitNote10(out string) {
 
 	ili := il.CreateElement(cacItem)
 	ili.CreateElement(cbcDescription).SetText("Laptop Peripherals")
-	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountry["MALAYSIA"].Code)
+	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountryRev["MALAYSIA"].Code)
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
 		CreateAttr(lID, "PTC").Element().SetText("9800.00.0010")
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
@@ -2209,7 +2209,7 @@ func sdkSampleSelfBilledRefundNote10(out string) {
 	spa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	spa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry[spCIC].Code)
+		Element().SetText(cCountryRev[spCIC].Code)
 	sp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Supplier's Name")
 	sc := sp.CreateElement(cacContact)
 	sc.CreateElement(cbcTelephone).SetText("+60123456789")
@@ -2236,7 +2236,7 @@ func sdkSampleSelfBilledRefundNote10(out string) {
 	cpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	cpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	cp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Buyer's Name")
 	cc := cp.CreateElement(cacContact)
 	cc.CreateElement(cbcTelephone).SetText("+60123456780")
@@ -2259,7 +2259,7 @@ func sdkSampleSelfBilledRefundNote10(out string) {
 	dpa.CreateElement(cacAddressLine).CreateElement(cbcLine).SetText("Persiaran Jaya")
 	dpa.CreateElement(cacCountry).CreateElement(cbcIdentificationCode).
 		CreateAttr(lID, "ISO3166-1").Element().CreateAttr(lAID, "6").
-		Element().SetText(cCountry["MALAYSIA"].Code)
+		Element().SetText(cCountryRev["MALAYSIA"].Code)
 	dp.CreateElement(cacPartyLegalEntity).CreateElement(cbcRegistrationName).SetText("Recipient's Name")
 
 	ds := d.CreateElement(cacShipment)
@@ -2342,7 +2342,7 @@ func sdkSampleSelfBilledRefundNote10(out string) {
 
 	ili := il.CreateElement(cacItem)
 	ili.CreateElement(cbcDescription).SetText("Laptop Peripherals")
-	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountry["MALAYSIA"].Code)
+	ili.CreateElement(cacOriginCountry).CreateElement(cbcIdentificationCode).SetText(cCountryRev["MALAYSIA"].Code)
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).
 		CreateAttr(lID, "PTC").Element().SetText("9800.00.0010")
 	ili.CreateElement(cacCommodityClassification).CreateElement(cbcItemClassificationCode).

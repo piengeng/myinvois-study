@@ -1,0 +1,40 @@
+mode: preprod # prod | preprod
+urls:
+  preprod_api: https://preprod-api.myinvois.hasil.gov.my
+  preprod_portal: https://preprod.myinvois.hasil.gov.my
+  prod_api: https://api.myinvois.hasil.gov.my
+  prod_portal: https://myinvois.hasil.gov.my
+clients:
+  - {
+      id: uuid-0, # client id
+      secret: uuid-1, # secret 1
+      _secret: uuid-2, # secret 2
+    }
+  # - { id: uuid-0a, secret: uuid-1a, _secret: uuid-2a }
+private:
+  qr: uuid_base64_encoded
+keys:
+  tpi: 32_random_characters_to_encrypt_taxpayer_pii_when_store_in_valkey
+valkey:
+  url: 127.0.0.1:6379
+ubl:
+  pack: false # xml to false->indent or true->compact
+  icc: 62099 # cbcIndustryClassificationCode # cMSICOtherInformationTechnologyServiceActivitiesNec
+  pi: # cacPartyIdentification
+    - { sid: "TIN", val: ...TIN... }
+    - { sid: "NRIC", val: ...NRIC... }
+    # - { sid: "BRN", val: ? }
+    # - { sid: "SST", val: ? }
+    # - { sid: "TTX", val: ? }
+  pa: # cacPostalAddress
+    cn: CityName # cbcCityName
+    pz: PostalZone # cbcPostalZone
+    csc: Selangor # cbcCountrySubentityCode # case sensitive as StateCodes.json, no wilayah persekutuan
+    al: # cacAddressLine
+      - line1 # cbcLine
+      - line2 # cbcLine
+      - line3 # cbcLine # unsure if lines could be > 3
+  rn: RegistrationName # cbcRegistrationName
+  c: # cacContact
+    t: "+60123456789" # cbcTelephone # quote for + char
+    em: id@email.com # cbcElectronicMail
